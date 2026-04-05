@@ -61,7 +61,6 @@ body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
 .amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.5rem 0; }
 .amenity-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-main); }
 .check-icon { color: var(--gold); font-weight: bold;}
-
 .payment-box { display: none; background: rgba(212,175,55,0.05); padding: 1.2rem; border-radius: var(--radius-sm); border: 1px dashed var(--gold); margin-bottom: 1.5rem; }
 .card-number { font-family: monospace; font-size: 1.3rem; color: var(--gold); letter-spacing: 3px; margin: 10px 0; background: var(--bg-main); padding: 10px; border-radius: 8px; text-align: center; }
 </style>
@@ -204,8 +203,8 @@ tg.expand();
 tg.ready();
 
 // ====================================================================
-// RENDER'DAN OLINGAN API LINKINGIZ
-const API_BASE = 'https://oldtashkenthotel.onrender.com'; 
+// DIQQAT: API MANZILI -1 QO'SHILGAN YANGISIGA O'ZGARDI
+const API_BASE = 'https://oldtashkenthotel-1.onrender.com'; 
 // ====================================================================
 
 const EXCHANGE_RATE = 12600; 
@@ -215,27 +214,9 @@ let currentCurr = 'USD';
 let currentSelectedRoom = '';
 
 const I18N = {
-  uz: {
-    subtitle: "Mehmondo'stlik va qulaylik uyg'unligi.", book_title: "Bron ma'lumotlari", room_type: "Xona turi", check_in: "Kelish (14:00 dan)", check_out: "Ketish (12:00 gacha)",
-    guests: "Mehmonlar", adults: "Kattalar", adults_sub: "12+ yosh", children: "Bolalar", children_sub: "12 yoshgacha", trip: "Safar maqsadi", 
-    payment: "To'lov usuli", card_desc: "Broningiz kafolatlanishi uchun quyidagi kartaga to'lov qiling:", transfer_amount: "Avans summasi:",
-    name: "To'liq ism", phone: "Telefon raqam", requests: "Maxsus istaklar", total: "Jami to'lov:", btn_book: "BRON SO'ROVINI YUBORISH", btn_details: "Batafsil", amenities_title: "Qulayliklar", per_night: "/kecha", btn_select: "SHU XONANI TANLASH",
-    trip_couple: "💑 Juftlik", trip_family: "👨‍👩‍👧‍👦 Oilaviy", trip_friends: "🎉 Do'stlar", trip_business: "💼 Biznes", trip_solo: "👤 Yolg'iz", pay_onsite: "🏨 Joyida to'lash", pay_card: "💳 10% Avans"
-  },
-  ru: {
-    subtitle: "Гармония гостеприимства и комфорта.", book_title: "Детали бронирования", room_type: "Тип номера", check_in: "Заезд (с 14:00)", check_out: "Выезд (до 12:00)",
-    guests: "Гости", adults: "Взрослые", adults_sub: "12+ лет", children: "Дети", children_sub: "До 12 лет", trip: "Цель поездки", 
-    payment: "Способ оплаты", card_desc: "Для гарантии брони переведите оплату на карту:", transfer_amount: "Сумма аванса:",
-    name: "ФИО", phone: "Номер телефона", requests: "Особые пожелания", total: "Итого к оплате:", btn_book: "ОТПРАВИТЬ ЗАПРОС НА БРОНЬ", btn_details: "Подробнее", amenities_title: "Удобства", per_night: "/ночь", btn_select: "ВЫБРАТЬ НОМЕР",
-    trip_couple: "💑 Пара", trip_family: "👨‍👩‍👧‍👦 Семья", trip_friends: "🎉 Друзья", trip_business: "💼 Бизнес", trip_solo: "👤 Один", pay_onsite: "🏨 На месте", pay_card: "💳 10% Аванс"
-  },
-  en: {
-    subtitle: "Harmony of hospitality and comfort.", book_title: "Booking Details", room_type: "Room Type", check_in: "Check-in (from 14:00)", check_out: "Check-out (until 12:00)",
-    guests: "Guests", adults: "Adults", adults_sub: "12+ years", children: "Children", children_sub: "Under 12", trip: "Trip Purpose", 
-    payment: "Payment Method", card_desc: "To guarantee your booking, please transfer to this card:", transfer_amount: "Advance amount:",
-    name: "Full Name", phone: "Phone Number", requests: "Special Requests", total: "Total Payment:", btn_book: "SEND BOOKING REQUEST", btn_details: "Details", amenities_title: "Amenities", per_night: "/night", btn_select: "SELECT ROOM",
-    trip_couple: "💑 Couple", trip_family: "👨‍👩‍👧‍👦 Family", trip_friends: "🎉 Friends", trip_business: "💼 Business", trip_solo: "👤 Solo", pay_onsite: "🏨 Pay at Hotel", pay_card: "💳 10% Advance"
-  }
+  uz: { subtitle: "Mehmondo'stlik va qulaylik uyg'unligi.", book_title: "Bron ma'lumotlari", room_type: "Xona turi", check_in: "Kelish (14:00 dan)", check_out: "Ketish (12:00 gacha)", guests: "Mehmonlar", adults: "Kattalar", adults_sub: "12+ yosh", children: "Bolalar", children_sub: "12 yoshgacha", trip: "Safar maqsadi", payment: "To'lov usuli", card_desc: "Broningiz kafolatlanishi uchun quyidagi kartaga to'lov qiling:", transfer_amount: "Avans summasi:", name: "To'liq ism", phone: "Telefon raqam", requests: "Maxsus istaklar", total: "Jami to'lov:", btn_book: "BRON SO'ROVINI YUBORISH", btn_details: "Batafsil", amenities_title: "Qulayliklar", per_night: "/kecha", btn_select: "SHU XONANI TANLASH", trip_couple: "💑 Juftlik", trip_family: "👨‍👩‍👧‍👦 Oilaviy", trip_friends: "🎉 Do'stlar", trip_business: "💼 Biznes", trip_solo: "👤 Yolg'iz", pay_onsite: "🏨 Joyida to'lash", pay_card: "💳 10% Avans" },
+  ru: { subtitle: "Гармония гостеприимства и комфорта.", book_title: "Детали бронирования", room_type: "Тип номера", check_in: "Заезд (с 14:00)", check_out: "Выезд (до 12:00)", guests: "Гости", adults: "Взрослые", adults_sub: "12+ лет", children: "Дети", children_sub: "До 12 лет", trip: "Цель поездки", payment: "Способ оплаты", card_desc: "Для гарантии брони переведите оплату на карту:", transfer_amount: "Сумма аванса:", name: "ФИО", phone: "Номер телефона", requests: "Особые пожелания", total: "Итого к оплате:", btn_book: "ОТПРАВИТЬ ЗАПРОС НА БРОНЬ", btn_details: "Подробнее", amenities_title: "Удобства", per_night: "/ночь", btn_select: "ВЫБРАТЬ НОМЕР", trip_couple: "💑 Пара", trip_family: "👨‍👩‍👧‍👦 Семья", trip_friends: "🎉 Друзья", trip_business: "💼 Бизнес", trip_solo: "👤 Один", pay_onsite: "🏨 На месте", pay_card: "💳 10% Аванс" },
+  en: { subtitle: "Harmony of hospitality and comfort.", book_title: "Booking Details", room_type: "Room Type", check_in: "Check-in (from 14:00)", check_out: "Check-out (until 12:00)", guests: "Guests", adults: "Adults", adults_sub: "12+ years", children: "Children", children_sub: "Under 12", trip: "Trip Purpose", payment: "Payment Method", card_desc: "To guarantee your booking, please transfer to this card:", transfer_amount: "Advance amount:", name: "Full Name", phone: "Phone Number", requests: "Special Requests", total: "Total Payment:", btn_book: "SEND BOOKING REQUEST", btn_details: "Details", amenities_title: "Amenities", per_night: "/night", btn_select: "SELECT ROOM", trip_couple: "💑 Couple", trip_family: "👨‍👩‍👧‍👦 Family", trip_friends: "🎉 Friends", trip_business: "💼 Business", trip_solo: "👤 Solo", pay_onsite: "🏨 Pay at Hotel", pay_card: "💳 10% Advance" }
 };
 
 const ROOMS = {
@@ -248,22 +229,12 @@ const ROOMS = {
 
 function toggleTheme() { document.body.classList.toggle('dark-mode'); document.getElementById('themeBtn').innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙'; }
 
-// XATOGA CHIDAMLI TIL O'ZGARTIRISH
 function changeLang(lang) { 
   currentLang = lang; 
   const textIds = ['subtitle','book_title','room_type','check_in','check_out','guests','adults','adults_sub','children','children_sub','trip','payment','card_desc','transfer_amount','name','phone','requests','total','btn_book','amenities_title','per_night','btn_select'];
-  
-  textIds.forEach(id => {
-    const el = document.getElementById('t_' + id);
-    if (el) { el.innerText = I18N[lang][id]; }
-  }); 
-
-  document.querySelectorAll('.chip').forEach(btn => { 
-    if(btn.dataset.t && I18N[lang][btn.dataset.t]) btn.innerText = I18N[lang][btn.dataset.t]; 
-  }); 
-
-  renderRooms(); 
-  updatePricePreview(); 
+  textIds.forEach(id => { const el = document.getElementById('t_' + id); if (el) el.innerText = I18N[lang][id]; }); 
+  document.querySelectorAll('.chip').forEach(btn => { if(btn.dataset.t && I18N[lang][btn.dataset.t]) btn.innerText = I18N[lang][btn.dataset.t]; }); 
+  renderRooms(); updatePricePreview(); 
 }
 
 function changeCurrency(curr) { currentCurr = curr; document.getElementById('hidden_curr').value = curr; renderRooms(); updatePricePreview(); }
@@ -288,15 +259,7 @@ function renderRooms() {
 }
 
 function selectTripType(type, btn) { document.getElementById('trip_type').value = type; document.querySelectorAll('#tripTypeGroup .chip').forEach(c => c.classList.remove('active')); btn.classList.add('active'); }
-
-// TO'LOV TANLASH
-function selectPayment(type, btn) {
-  document.getElementById('payment_type').value = type;
-  document.querySelectorAll('#paymentTypeGroup .chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('avansBox').style.display = (type === 'avans') ? 'block' : 'none';
-}
-
+function selectPayment(type, btn) { document.getElementById('payment_type').value = type; document.querySelectorAll('#paymentTypeGroup .chip').forEach(c => c.classList.remove('active')); btn.classList.add('active'); document.getElementById('avansBox').style.display = (type === 'avans') ? 'block' : 'none'; }
 function updateCount(type, change) { const a = document.getElementById('adult_count'); const c = document.getElementById('child_count'); const max = ROOMS[document.getElementById('fi_room').value]?.max_guests || 2; let av = parseInt(a.value); let cv = parseInt(c.value); if (type === 'adult') { if (av + change >= 1) av += change; } else { if (cv + change >= 0) cv += change; } if (av + cv > max) return tg.showAlert(currentLang==='uz' ? `Sig'im cheklangan` : 'Capacity limit'); a.value = av; c.value = cv; }
 function openModal(key) { currentSelectedRoom = key; const r = ROOMS[key]; document.getElementById('mImg').style.backgroundImage = `url('${r.img}')`; document.getElementById('mTitle').innerText = r.name[currentLang]; document.getElementById('mDesc').innerText = r.desc[currentLang]; document.getElementById('mPrice').innerText = formatMoney(r.price); let amHtml = ''; r.amenities[currentLang].forEach(a => { amHtml += `<div class="amenity-item"><span class="check-icon">✓</span> ${a}</div>`; }); document.getElementById('mAmenities').innerHTML = amHtml; document.getElementById('modalBackdrop').classList.add('show'); document.getElementById('roomModal').classList.add('show'); }
 function closeModal() { document.getElementById('modalBackdrop').classList.remove('show'); document.getElementById('roomModal').classList.remove('show'); }
@@ -328,7 +291,7 @@ async function submitBook(e) {
     const resp = await fetch(`${API_BASE}/api/bookings`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     const result = await resp.json();
     if (result.success) { 
-        tg.showAlert("✅ " + (currentLang==='uz'?"Bron muvaffaqiyatli qabul qilindi!":currentLang==='ru'?"Успешно!":"Success!")); 
+        tg.showAlert("✅ " + (currentLang==='uz'?"Bron so'rovi yuborildi!":currentLang==='ru'?"Успешно отправлено!":"Request sent successfully!")); 
         setTimeout(() => tg.close(), 2000); 
     } else { 
         tg.showAlert("❌ Xatolik yuz berdi"); 
