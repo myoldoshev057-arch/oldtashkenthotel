@@ -8,18 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ═══════════════════════════════════════
+   PREMIUM DESIGN & VARIABLES
+═══════════════════════════════════════ */
 :root {
   --gold: #D4AF37; --gold-dark: #AA8B2C; --gold-glow: rgba(212, 175, 55, 0.15);
   --bg-main: #f4f1ea; --bg-card: rgba(255, 255, 255, 0.85); --text-main: #1a1a1a;
   --text-muted: #666666; --border-color: rgba(212, 175, 55, 0.3); --modal-overlay: rgba(0,0,0,0.4);
   --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 body.dark-mode {
   --bg-main: #0a0a0a; --bg-card: rgba(20, 20, 20, 0.85); --text-main: #ffffff;
   --text-muted: #a0a0a0; --border-color: rgba(212, 175, 55, 0.2); --modal-overlay: rgba(0,0,0,0.8);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
@@ -28,7 +29,6 @@ body {
   background-image: radial-gradient(circle at 15% 50px, var(--gold-glow), transparent 25%), radial-gradient(circle at 85% 30%, var(--gold-glow), transparent 25%);
   background-attachment: fixed;
 }
-
 body::after {
   content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
@@ -37,40 +37,49 @@ body::after {
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
 
-.header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 50; }
-.logo-mini { font-size: 1.2rem; letter-spacing: 2px; font-family: 'Playfair Display', serif; font-weight: 600; text-transform: uppercase; }
-.theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 50; }
+.logo-mini { font-size: 1.1rem; letter-spacing: 2px; font-family: 'Playfair Display', serif; font-weight: 600; text-transform: uppercase; color: var(--gold);}
 
-.hero-section { padding: 2.5rem 1.5rem 1.5rem; text-align: center; position: relative; }
-.hero-title { font-size: 2.2rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px;}
+/* YANGI: Til va Valyuta tugmalari */
+.top-controls { display: flex; gap: 8px; align-items: center; }
+.custom-select { 
+  background: transparent; border: 1px solid var(--border-color); color: var(--text-main); 
+  padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; 
+  outline: none; cursor: pointer; appearance: none; text-align: center; font-family: inherit;
+}
+.custom-select:focus { border-color: var(--gold); }
+.theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+.hero-section { padding: 2rem 1.5rem 1.5rem; text-align: center; position: relative; }
+.hero-title { font-size: 2rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px;}
 .hero-subtitle { font-size: 0.9rem; color: var(--text-muted); }
 .hero-rating { display: inline-block; background: var(--gold); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 10px; }
 
 .rooms-grid { display: grid; gap: 1.5rem; padding: 0 1.5rem 2rem; position: relative; z-index: 10;}
-.room-card { background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.room-card:active { transform: scale(0.98); box-shadow: 0 4px 15px rgba(212,175,55,0.2); }
+.room-card { background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.05); cursor: pointer; transition: var(--transition); }
+.room-card:active { transform: scale(0.98); }
 .room-image { height: 200px; background-size: cover; background-position: center; position: relative; }
 .room-image::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, var(--bg-card), transparent); }
 .room-content { padding: 1.5rem; position: relative; z-index: 2; }
-.room-title { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.room-title { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .room-desc-short { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
 .room-footer { display: flex; justify-content: space-between; align-items: flex-end; }
-.room-price { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); }
-.btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 1.2rem; border-radius: 30px; font-weight: 600; font-size: 0.8rem; }
+.room-price { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); font-weight: 600; }
+.btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 1rem; border-radius: 30px; font-weight: 600; font-size: 0.8rem; }
 
-.booking-section { padding: 2.5rem 1.5rem; background: var(--bg-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); position: relative; z-index: 10; }
+.booking-section { padding: 2.5rem 1.5rem; background: var(--bg-card); backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); position: relative; z-index: 10; }
 .form-group { margin-bottom: 1.2rem; }
 .form-label { font-size: 0.75rem; font-weight: 600; color: var(--gold); margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px;}
-.form-input { width: 100%; background: rgba(0,0,0,0.02); border: 1px solid var(--border-color); color: var(--text-main); padding: 1.2rem 1rem; font-size: 1rem; font-family: inherit; border-radius: var(--radius-sm); outline: none; transition: var(--transition); }
+.form-input { width: 100%; background: rgba(0,0,0,0.02); border: 1px solid var(--border-color); color: var(--text-main); padding: 1.2rem 1rem; font-size: 1rem; font-family: inherit; border-radius: 8px; outline: none; transition: var(--transition); }
 body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
 .form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
 
-.guest-counters { background: transparent; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; margin-bottom: 1.5rem; }
+.guest-counters { background: transparent; border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; margin-bottom: 1.5rem; }
 .counter-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 5px; }
 .counter-row:not(:last-child) { border-bottom: 1px solid rgba(212,175,55,0.2); }
 .counter-label { font-weight: 600; font-size: 1rem; }
 .counter-sub { font-size: 0.75rem; color: var(--text-muted); display: block; }
-.counter-ctrl { display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 5px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.counter-ctrl { display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 5px 10px; }
 .counter-ctrl button { background: transparent; border: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; padding: 0 10px; outline: none; }
 .counter-ctrl input { width: 30px; text-align: center; background: transparent; border: none; color: var(--text-main); font-weight: 600; font-size: 1.1rem; pointer-events: none; padding: 0; }
 
@@ -78,69 +87,79 @@ body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
 .chip { padding: 10px 18px; background: transparent; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 30px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
 .chip.active { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 600;}
 
-.price-box { background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+.price-box { background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent); padding: 1.5rem; border-radius: 8px; border: 1px dashed var(--gold); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
 
 .btn-primary { width: 100%; background: linear-gradient(45deg, var(--gold-dark), var(--gold)); color: #000; border: none; padding: 1.2rem; font-size: 1rem; font-weight: 600; border-radius: 30px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: var(--transition); }
-.btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(212,175,55,0.3); }
+.btn-primary:active { transform: translateY(2px); }
 
+.payment-box { display: none; background: rgba(212,175,55,0.05); padding: 1.2rem; border-radius: 8px; border: 1px dashed var(--gold); margin-bottom: 1.5rem; }
+.card-number { font-family: monospace; font-size: 1.3rem; color: var(--gold); letter-spacing: 3px; margin: 10px 0; background: var(--bg-main); padding: 10px; border-radius: 8px; text-align: center; }
+.hotel-info { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+
+/* Modal */
 .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--modal-overlay); backdrop-filter: blur(5px); z-index: 100; display: none; opacity: 0; transition: opacity 0.3s; }
 .modal-backdrop.show { display: block; opacity: 1; }
-.modal-content { position: fixed; bottom: 0; left: 0; width: 100%; max-height: 92vh; background: var(--bg-card); border-radius: 24px 24px 0 0; border-top: 1px solid var(--border-color); z-index: 101; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow-y: auto; padding-bottom: 2rem; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+.modal-content { position: fixed; bottom: 0; left: 0; width: 100%; max-height: 92vh; background: var(--bg-card); border-radius: 24px 24px 0 0; border-top: 1px solid var(--border-color); z-index: 101; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow-y: auto; padding-bottom: 2rem; }
 .modal-content.show { transform: translateY(0); }
-.modal-close { position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 1px solid rgba(255,255,255,0.2); font-size: 1.2rem; }
+.modal-close { position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; font-size: 1.2rem; border: none; cursor: pointer;}
 .modal-img { height: 250px; background-size: cover; background-position: center; position: relative;}
 .modal-img::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to top, var(--bg-card), transparent); }
 .modal-body { padding: 1.5rem; position: relative; top: -20px;}
 .amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.5rem 0; }
 .amenity-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-main); }
 .check-icon { color: var(--gold); font-weight: bold;}
-
-.payment-box { display: none; background: rgba(212,175,55,0.05); padding: 1.2rem; border-radius: var(--radius-sm); border: 1px dashed var(--gold); margin-bottom: 1.5rem; }
-.card-number { font-family: monospace; font-size: 1.3rem; color: var(--gold); letter-spacing: 3px; margin: 10px 0; background: var(--bg-main); padding: 10px; border-radius: 8px; text-align: center; }
-.hotel-info { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; padding-top: 1rem; border-top: 1px solid var(--border-color); }
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="logo-mini">Old Tashkent</div>
-  <div class="controls">
+  <div class="top-controls">
+    <select id="langSelect" class="custom-select" onchange="changeLang(this.value)">
+      <option value="uz">🇺🇿 UZ</option>
+      <option value="ru">🇷🇺 RU</option>
+      <option value="en">🇬🇧 EN</option>
+    </select>
+    <select id="currSelect" class="custom-select" onchange="changeCurrency(this.value)">
+      <option value="USD">💵 USD</option>
+      <option value="UZS">💳 UZS</option>
+    </select>
     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
   </div>
 </div>
 
 <div class="hero-section">
-  <h1 class="hero-title">Old Tashkent Hotel & Spa</h1>
-  <p class="hero-subtitle">Mehmondo'stlik va qulaylik uyg'unligi.</p>
+  <h1 class="hero-title">Old Tashkent Hotel</h1>
+  <p class="hero-subtitle" id="t_subtitle">Mehmondo'stlik va qulaylik uyg'unligi.</p>
   <div class="hero-rating">⭐⭐⭐ 9.2/10 (Booking.com)</div>
 </div>
 
 <div class="rooms-grid" id="roomsContainer"></div>
 
 <div class="booking-section" id="bookingSection">
-  <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Bron ma'lumotlari</h2>
+  <h2 style="margin-bottom: 2rem; font-size: 1.5rem;" id="t_book_title">Bron ma'lumotlari</h2>
   
   <form id="bookForm" onsubmit="submitBook(event)">
     <div class="form-group">
-      <label class="form-label">Xona turi</label>
+      <label class="form-label" id="t_room_type">Xona turi</label>
       <select name="room_type" id="fi_room" class="form-input" required onchange="updatePricePreview()"></select>
     </div>
     
     <div style="display: flex; gap: 15px;">
       <div class="form-group" style="flex:1;">
-        <label class="form-label">Kelish (14:00 dan)</label>
+        <label class="form-label" id="t_check_in">Kelish (14:00 dan)</label>
         <input type="date" name="check_in" id="fi_checkin" class="form-input" required onchange="updatePricePreview()">
       </div>
       <div class="form-group" style="flex:1;">
-        <label class="form-label">Ketish (12:00 gacha)</label>
+        <label class="form-label" id="t_check_out">Ketish (12:00 gacha)</label>
         <input type="date" name="check_out" id="fi_checkout" class="form-input" required onchange="updatePricePreview()">
       </div>
     </div>
 
-    <label class="form-label">Mehmonlar</label>
+    <label class="form-label" id="t_guests">Mehmonlar</label>
     <div class="guest-counters">
       <div class="counter-row">
-        <div><span class="counter-label">Kattalar</span><span class="counter-sub">12+ yosh</span></div>
+        <div><span class="counter-label" id="t_adults">Kattalar</span><span class="counter-sub" id="t_adults_sub">12+ yosh</span></div>
         <div class="counter-ctrl">
           <button type="button" onclick="updateCount('adult', -1)">-</button>
           <input type="number" id="adult_count" name="adults" value="1" readonly>
@@ -148,7 +167,7 @@ body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
         </div>
       </div>
       <div class="counter-row">
-        <div><span class="counter-label">Bolalar</span><span class="counter-sub">12 yoshgacha</span></div>
+        <div><span class="counter-label" id="t_children">Bolalar</span><span class="counter-sub" id="t_children_sub">12 yoshgacha</span></div>
         <div class="counter-ctrl">
           <button type="button" onclick="updateCount('child', -1)">-</button>
           <input type="number" id="child_count" name="children" value="0" readonly>
@@ -157,55 +176,57 @@ body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
       </div>
     </div>
 
-    <label class="form-label">Safar maqsadi</label>
+    <label class="form-label" id="t_trip">Safar maqsadi</label>
     <div class="chip-group" id="tripTypeGroup">
-      <button type="button" class="chip active" onclick="selectTripType('Juftlik', this)">💑 Juftlik</button>
-      <button type="button" class="chip" onclick="selectTripType('Oilaviy', this)">👨‍👩‍👧‍👦 Oilaviy</button>
-      <button type="button" class="chip" onclick="selectTripType('Dostlar', this)">🎉 Do'stlar</button>
-      <button type="button" class="chip" onclick="selectTripType('Biznes', this)">💼 Biznes</button>
-      <button type="button" class="chip" onclick="selectTripType('Yolgiz', this)">👤 Yolg'iz</button>
+      <button type="button" class="chip active" onclick="selectTripType('Juftlik', this)" data-t="trip_couple">💑 Juftlik</button>
+      <button type="button" class="chip" onclick="selectTripType('Oilaviy', this)" data-t="trip_family">👨‍👩‍👧‍👦 Oilaviy</button>
+      <button type="button" class="chip" onclick="selectTripType('Dostlar', this)" data-t="trip_friends">🎉 Do'stlar</button>
+      <button type="button" class="chip" onclick="selectTripType('Biznes', this)" data-t="trip_business">💼 Biznes</button>
+      <button type="button" class="chip" onclick="selectTripType('Yolgiz', this)" data-t="trip_solo">👤 Yolg'iz</button>
     </div>
     <input type="hidden" name="trip_type" id="trip_type" value="Juftlik">
 
-    <label class="form-label">To'lov usuli</label>
+    <label class="form-label" id="t_payment">To'lov usuli</label>
     <div class="chip-group" id="paymentTypeGroup">
-      <button type="button" class="chip active" onclick="selectPayment('joyida', this)">🏨 Joyida to'lash</button>
-      <button type="button" class="chip" onclick="selectPayment('avans', this)">💳 10% Avans (Kafolatli bron)</button>
+      <button type="button" class="chip active" onclick="selectPayment('joyida', this)" data-t="pay_onsite">🏨 Joyida to'lash</button>
+      <button type="button" class="chip" onclick="selectPayment('avans', this)" data-t="pay_card">💳 10% Avans (Kafolat)</button>
     </div>
     <input type="hidden" name="payment_type" id="payment_type" value="joyida">
 
     <div class="payment-box" id="avansBox">
-      <p style="font-size: 0.85rem; color: var(--text-main);">Broningiz 100% kafolatlanishi uchun jami summaning 10% qismini quyidagi kartaga o'tkazing (Payme/Uzum orqali):</p>
+      <p style="font-size: 0.85rem; color: var(--text-main);" id="t_card_desc">Broningiz 100% kafolatlanishi uchun jami summaning 10% qismini o'tkazing (Payme/Uzum):</p>
       <div class="card-number">9860 3401 0170 8832</div>
       <p style="font-size: 0.9rem; text-align: center; color: var(--text-muted);">
-        O'tkaziladigan summa: <b id="avansAmount" style="color: var(--gold); font-size: 1.1rem;">$0</b>
+        <span id="t_transfer_amount">O'tkaziladigan summa:</span> <b id="avansAmount" style="color: var(--gold); font-size: 1.1rem;">$0</b>
       </p>
-      <p style="font-size: 0.75rem; text-align: center; color: var(--text-muted); font-style: italic; margin-top: 10px;">* To'lovni amalga oshirgach, pastdagi tugmani bosing.</p>
     </div>
 
     <div class="form-group">
-      <label class="form-label">To'liq ism</label>
+      <label class="form-label" id="t_name">To'liq ism</label>
       <input type="text" name="first_name" id="fi_name" class="form-input" placeholder="Ism Familiya" required>
     </div>
     <div class="form-group">
-      <label class="form-label">Telefon raqam</label>
+      <label class="form-label" id="t_phone">Telefon raqam</label>
       <input type="tel" name="phone" id="fi_phone" class="form-input" placeholder="+998 90 123 45 67" required>
     </div>
     <div class="form-group">
-      <label class="form-label">Maxsus istaklar (ixtiyoriy)</label>
-      <input type="text" name="special_requests" class="form-input" placeholder="Nonushta xonaga, transfer...">
+      <label class="form-label" id="t_requests">Maxsus istaklar (ixtiyoriy)</label>
+      <input type="text" name="special_requests" id="fi_req" class="form-input" placeholder="...">
     </div>
 
     <div class="price-box">
-      <div style="font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">Jami to'lov:</div>
+      <div style="font-weight: 600; font-size: 1.1rem; text-transform: uppercase;" id="t_total">Jami to'lov:</div>
       <div style="font-size: 1.8rem; color: var(--gold); font-family: 'Playfair Display', serif;" id="ppTotal">$0</div>
     </div>
+
+    <input type="hidden" name="total_price" id="hidden_total">
+    <input type="hidden" name="currency" id="hidden_curr" value="USD">
 
     <button type="submit" class="btn-primary" id="bookBtn">BRONNI TASDIQLASH</button>
   </form>
 
   <div class="hotel-info">
-    📍 Yusuf Hamadoni ko'chasi 89b, Yakkasaray, Toshkent<br>
+    📍 Yusuf Hamadoni 89b, Yakkasaray, Tashkent<br>
     📞 +998 95 325 22 33 | 🌐 oldtashkenthotel.uz
   </div>
 </div>
@@ -215,13 +236,13 @@ body.dark-mode .form-input { background: rgba(255,255,255,0.02); }
   <button class="modal-close" onclick="closeModal()">✕</button>
   <div class="modal-img" id="mImg"></div>
   <div class="modal-body">
-    <h2 id="mTitle" style="font-size: 1.8rem; margin-bottom: 10px; color: var(--gold);"></h2>
+    <h2 id="mTitle" style="font-size: 1.6rem; margin-bottom: 10px; color: var(--gold);"></h2>
     <p id="mDesc" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"></p>
-    <h3 style="margin-top: 1.5rem; font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Qulayliklar</h3>
+    <h3 style="margin-top: 1.5rem; font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;" id="t_amenities_title">Qulayliklar</h3>
     <div class="amenities-grid" id="mAmenities"></div>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; background: rgba(0,0,0,0.02); padding: 15px; border-radius: 15px; border: 1px solid var(--border-color);">
-      <div><span style="font-size: 1.6rem; color: var(--gold); font-family: 'Playfair Display';" id="mPrice"></span><span style="font-size:0.8rem; color:var(--text-muted);">/kecha</span></div>
-      <button class="btn-primary" style="width: auto; padding: 0.8rem 1.5rem; margin-top: 0; font-size: 0.9rem;" onclick="selectRoomFromModal()">SHU XONANI TANLASH</button>
+      <div><span style="font-size: 1.6rem; color: var(--gold); font-family: 'Playfair Display';" id="mPrice"></span><span style="font-size:0.8rem; color:var(--text-muted);" id="t_per_night">/kecha</span></div>
+      <button class="btn-primary" style="width: auto; padding: 0.8rem 1.2rem; margin-top: 0; font-size: 0.8rem;" onclick="selectRoomFromModal()" id="t_btn_select">TANLASH</button>
     </div>
   </div>
 </div>
@@ -231,67 +252,153 @@ const tg = window.Telegram.WebApp;
 tg.expand();
 tg.ready();
 
-// ====================================================================
-// DIQQAT: RENDER'DAN OLINGAN API LINKINGIZNI SHU YERGA YOZING!
-// ====================================================================
-// DIQQAT: RENDER'DAN OLINGAN API LINKINGIZNI SHU YERGA YOZING!
 const API_BASE = 'https://oldtashkenthotel.onrender.com'; 
-// ====================================================================
+const EXCHANGE_RATE = 12600; // 1 USD = 12600 UZS
 
-// OLD TASHKENT HOTEL & SPA XONALARI
-const ROOMS = {
-  standart_double: { 
-    name: "Standart Double Xona", price: 50, max_guests: 2,
-    img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80",
-    desc: "Shinam va qulay standart xona. Mehmonxonada sifatli dam olish uchun barcha qulayliklarga ega.",
-    amenities: ["Konditsioner", "LED TV", "Bepul Wi-Fi", "Seyf", "Cho'milish xonasi", "Soch quritgich", "Choy-qahva to'plami"]
+let currentLang = 'uz';
+let currentCurr = 'USD';
+let currentSelectedRoom = '';
+
+// TIL LUG'ATI
+const I18N = {
+  uz: {
+    subtitle: "Mehmondo'stlik va qulaylik uyg'unligi.", book_title: "Bron ma'lumotlari",
+    room_type: "Xona turi", check_in: "Kelish (14:00 dan)", check_out: "Ketish (12:00 gacha)",
+    guests: "Mehmonlar", adults: "Kattalar", adults_sub: "12+ yosh", children: "Bolalar", children_sub: "12 yoshgacha",
+    trip: "Safar maqsadi", payment: "To'lov usuli", card_desc: "Broningiz 100% kafolatlanishi uchun jami summaning 10% qismini o'tkazing (Payme/Uzum):",
+    transfer_amount: "O'tkaziladigan summa:", name: "To'liq ism", phone: "Telefon raqam",
+    requests: "Maxsus istaklar (ixtiyoriy)", total: "Jami to'lov:", btn_book: "BRONNI TASDIQLASH",
+    btn_details: "Batafsil", amenities_title: "Qulayliklar", per_night: "/kecha", btn_select: "SHU XONANI TANLASH",
+    trip_couple: "💑 Juftlik", trip_family: "👨‍👩‍👧‍👦 Oilaviy", trip_friends: "🎉 Do'stlar", trip_business: "💼 Biznes", trip_solo: "👤 Yolg'iz",
+    pay_onsite: "🏨 Joyida to'lash", pay_card: "💳 10% Avans (Kafolat)"
   },
-  superior_triple: { 
-    name: "Superior Triple Xona", price: 70, max_guests: 3,
-    img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
-    desc: "Uch kishilik keng va yorug' xona. Ovoz o'tkazmaydigan devorlar sokin dam olishni ta'minlaydi.",
-    amenities: ["3 ta yotoq", "Konditsioner", "LED TV", "Wi-Fi", "Ovoz o'tkazmaydigan", "Premium to'shak", "Seyf"]
+  ru: {
+    subtitle: "Гармония гостеприимства и комфорта.", book_title: "Детали бронирования",
+    room_type: "Тип номера", check_in: "Заезд (с 14:00)", check_out: "Выезд (до 12:00)",
+    guests: "Гости", adults: "Взрослые", adults_sub: "12+ лет", children: "Дети", children_sub: "До 12 лет",
+    trip: "Цель поездки", payment: "Способ оплаты", card_desc: "Для 100% гарантии брони переведите 10% от общей суммы (Payme/Uzum):",
+    transfer_amount: "Сумма перевода:", name: "ФИО", phone: "Номер телефона",
+    requests: "Особые пожелания", total: "Итого к оплате:", btn_book: "ПОДТВЕРДИТЬ БРОНЬ",
+    btn_details: "Подробнее", amenities_title: "Удобства", per_night: "/ночь", btn_select: "ВЫБРАТЬ НОМЕР",
+    trip_couple: "💑 Пара", trip_family: "👨‍👩‍👧‍👦 Семья", trip_friends: "🎉 Друзья", trip_business: "💼 Бизнес", trip_solo: "👤 Один",
+    pay_onsite: "🏨 На месте", pay_card: "💳 10% Аванс"
   },
-  deluxe_family: { 
-    name: "Deluxe Family Xona", price: 90, max_guests: 4,
-    img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-    desc: "Butun oila uchun mukammal tanlov. Keng oilaviy maydon va alohida yotoq joylari mavjud.",
-    amenities: ["Oilaviy maydon", "2 ta alohida yotoq", "Keng vanna xonasi", "Konditsioner", "LED TV", "Bepul Wi-Fi"]
-  },
-  double_suite: { 
-    name: "Double Suite Xona", price: 120, max_guests: 2,
-    img: "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=800&q=80",
-    desc: "Alohida mehmonxona va yotoqxonaga ega premium darajadagi xona. Maxsus dam olish joyi mavjud.",
-    amenities: ["1 mehmonxona, 1 yotoqxona", "Vanna", "Dam olish joyi", "LED TV (kabel)", "Shkaf", "Bepul tualet buyumlari"]
+  en: {
+    subtitle: "Harmony of hospitality and comfort.", book_title: "Booking Details",
+    room_type: "Room Type", check_in: "Check-in (from 14:00)", check_out: "Check-out (until 12:00)",
+    guests: "Guests", adults: "Adults", adults_sub: "12+ years", children: "Children", children_sub: "Under 12",
+    trip: "Trip Purpose", payment: "Payment Method", card_desc: "For a 100% guarantee, transfer 10% of the total amount (Payme/Uzum):",
+    transfer_amount: "Amount to transfer:", name: "Full Name", phone: "Phone Number",
+    requests: "Special Requests", total: "Total Payment:", btn_book: "CONFIRM BOOKING",
+    btn_details: "Details", amenities_title: "Amenities", per_night: "/night", btn_select: "SELECT ROOM",
+    trip_couple: "💑 Couple", trip_family: "👨‍👩‍👧‍👦 Family", trip_friends: "🎉 Friends", trip_business: "💼 Business", trip_solo: "👤 Solo",
+    pay_onsite: "🏨 Pay at Hotel", pay_card: "💳 10% Advance"
   }
 };
 
-let currentSelectedRoom = '';
+const ROOMS = {
+  double_room: { 
+    price: 72, max_guests: 2, img: "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=800&q=80",
+    name: { uz: "Double Room (1 ta katta yotoq)", ru: "Двухместный номер (1 кровать)", en: "Double Room (1 Queen bed)" },
+    desc: { uz: "Yakka o'zi yoki juftliklar uchun ideal bo'lgan shinam xona (15 kv.m).", ru: "Уютный номер (15 кв.м), идеальный для пар или одного человека.", en: "Cozy room (15 sq.m) ideal for solo travelers or couples." },
+    amenities: { uz: ["Queen-size yotoq", "Konditsioner", "Wi-Fi", "Nonushta"], ru: ["Кровать Queen", "Кондиционер", "Wi-Fi", "Завтрак"], en: ["Queen bed", "AC", "Wi-Fi", "Breakfast"] }
+  },
+  twin_room: { 
+    price: 72, max_guests: 2, img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+    name: { uz: "Twin Room (2 ta alohida yotoq)", ru: "Номер Твин (2 кровати)", en: "Twin Room (2 Single beds)" },
+    desc: { uz: "Do'stlar yoki hamkasblar uchun qulay tanlov (18 kv.m).", ru: "Удобный выбор для друзей или коллег (18 кв.м).", en: "Comfortable choice for friends or colleagues (18 sq.m)." },
+    amenities: { uz: ["2 ta yakkalik yotoq", "Konditsioner", "Wi-Fi", "Nonushta"], ru: ["2 раздельные кровати", "Кондиционер", "Wi-Fi", "Завтрак"], en: ["2 Single beds", "AC", "Wi-Fi", "Breakfast"] }
+  },
+  triple_room: { 
+    price: 88, max_guests: 3, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+    name: { uz: "Triple Room (3 kishilik)", ru: "Трехместный номер", en: "Triple Room (3 persons)" },
+    desc: { uz: "Oilaviy yoki guruh bo'lib kelganlar uchun keng xona (20 kv.m).", ru: "Просторный номер для семьи или группы (20 кв.м).", en: "Spacious room for a family or group (20 sq.m)." },
+    amenities: { uz: ["3 ta yakkalik yotoq", "Konditsioner", "Wi-Fi", "Nonushta"], ru: ["3 односпальные кровати", "Кондиционер", "Wi-Fi", "Завтрак"], en: ["3 Single beds", "AC", "Wi-Fi", "Breakfast"] }
+  },
+  deluxe_family: { 
+    price: 95, max_guests: 4, img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
+    name: { uz: "Deluxe Family Room", ru: "Семейный номер Делюкс", en: "Deluxe Family Room" },
+    desc: { uz: "Bolali mehmonlar uchun ideal, qo'shimcha qulayliklarga ega.", ru: "Идеально для гостей с детьми, с дополнительными удобствами.", en: "Ideal for guests with children, with extra amenities." },
+    amenities: { uz: ["Katta Queen yotoq", "Bolalar uchun joy", "Wi-Fi", "Nonushta"], ru: ["Кровать Queen", "Детская зона", "Wi-Fi", "Завтрак"], en: ["Queen bed", "Kids area", "Wi-Fi", "Breakfast"] }
+  },
+  two_bedroom_suite: { 
+    price: 120, max_guests: 4, img: "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=800&q=80",
+    name: { uz: "Two-Bedroom Suite (Lyuks)", ru: "Люкс с двумя спальнями", en: "Two-Bedroom Suite" },
+    desc: { uz: "Alohida yotoqxonalar va dam olish zonasiga ega bo'lgan 2 xonali Lyuks.", ru: "Двухкомнатный люкс с отдельными спальнями и зоной отдыха.", en: "Two-room suite with separate bedrooms and a seating area." },
+    amenities: { uz: ["1 yotoqxona, 1 mehmonxona", "Vanna va Dush", "2 ta TV", "Premium Xizmat"], ru: ["1 спальня, 1 гостиная", "Ванна и Душ", "2 ТВ", "Премиум сервис"], en: ["1 bedroom, 1 living room", "Bath & Shower", "2 TVs", "Premium Service"] }
+  }
+};
 
 function toggleTheme() {
-  const body = document.body;
-  body.classList.toggle('dark-mode');
-  const isDark = body.classList.contains('dark-mode');
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
   localStorage.setItem('aurum_theme', isDark ? 'dark' : 'light');
   document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
   if(tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
 }
 
+function changeLang(lang) {
+  currentLang = lang;
+  
+  // Update static texts
+  document.getElementById('t_subtitle').innerText = I18N[lang].subtitle;
+  document.getElementById('t_book_title').innerText = I18N[lang].book_title;
+  document.getElementById('t_room_type').innerText = I18N[lang].room_type;
+  document.getElementById('t_check_in').innerText = I18N[lang].check_in;
+  document.getElementById('t_check_out').innerText = I18N[lang].check_out;
+  document.getElementById('t_guests').innerText = I18N[lang].guests;
+  document.getElementById('t_adults').innerText = I18N[lang].adults;
+  document.getElementById('t_adults_sub').innerText = I18N[lang].adults_sub;
+  document.getElementById('t_children').innerText = I18N[lang].children;
+  document.getElementById('t_children_sub').innerText = I18N[lang].children_sub;
+  document.getElementById('t_trip').innerText = I18N[lang].trip;
+  document.getElementById('t_payment').innerText = I18N[lang].payment;
+  document.getElementById('t_card_desc').innerText = I18N[lang].card_desc;
+  document.getElementById('t_transfer_amount').innerText = I18N[lang].transfer_amount;
+  document.getElementById('t_name').innerText = I18N[lang].name;
+  document.getElementById('t_phone').innerText = I18N[lang].phone;
+  document.getElementById('t_requests').innerText = I18N[lang].requests;
+  document.getElementById('t_total').innerText = I18N[lang].total;
+  document.getElementById('bookBtn').innerText = I18N[lang].btn_book;
+  document.getElementById('t_amenities_title').innerText = I18N[lang].amenities_title;
+  document.getElementById('t_per_night').innerText = I18N[lang].per_night;
+  document.getElementById('t_btn_select').innerText = I18N[lang].btn_select;
+
+  // Update chips
+  document.querySelectorAll('.chip').forEach(btn => {
+    if(btn.dataset.t) btn.innerText = I18N[lang][btn.dataset.t];
+  });
+
+  renderRooms();
+  updatePricePreview();
+}
+
+function changeCurrency(curr) {
+  currentCurr = curr;
+  document.getElementById('hidden_curr').value = curr;
+  renderRooms();
+  updatePricePreview();
+}
+
+function formatMoney(amountUSD) {
+  if (currentCurr === 'UZS') {
+    return (amountUSD * EXCHANGE_RATE).toLocaleString() + ' UZS';
+  }
+  return '$' + amountUSD.toLocaleString();
+}
+
 window.onload = () => {
   const savedTheme = localStorage.getItem('aurum_theme');
   if(savedTheme === 'dark' || (!savedTheme && tg.colorScheme === 'dark')) {
-    document.body.classList.add('dark-mode');
-    document.getElementById('themeBtn').innerText = '☀️';
+    document.body.classList.add('dark-mode'); document.getElementById('themeBtn').innerText = '☀️';
   }
   if(tg.initDataUnsafe?.user) {
     document.getElementById('fi_name').value = `${tg.initDataUnsafe.user.first_name || ''} ${tg.initDataUnsafe.user.last_name || ''}`.trim();
   }
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById('fi_checkin').min = today;
-  document.getElementById('fi_checkin').value = today;
+  document.getElementById('fi_checkin').min = today; document.getElementById('fi_checkin').value = today;
   const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
-  document.getElementById('fi_checkout').min = tomorrow.toISOString().split('T')[0];
-  document.getElementById('fi_checkout').value = tomorrow.toISOString().split('T')[0];
+  document.getElementById('fi_checkout').min = tomorrow.toISOString().split('T')[0]; document.getElementById('fi_checkout').value = tomorrow.toISOString().split('T')[0];
 
   renderRooms();
   updatePricePreview();
@@ -300,23 +407,35 @@ window.onload = () => {
 function renderRooms() {
   const container = document.getElementById('roomsContainer');
   const select = document.getElementById('fi_room');
+  
+  // Saqlangan xonani eslab qolish
+  const savedVal = select.value;
+  
+  container.innerHTML = '';
+  select.innerHTML = '';
+
   Object.keys(ROOMS).forEach(key => {
     const r = ROOMS[key];
+    const name = r.name[currentLang];
+    const desc = r.desc[currentLang];
+    
     container.innerHTML += `
       <div class="room-card" onclick="openModal('${key}')">
         <div class="room-image" style="background-image: url('${r.img}')"></div>
         <div class="room-content">
-          <h3 class="room-title">${r.name}</h3>
-          <p class="room-desc-short">${r.desc.substring(0, 65)}...</p>
+          <h3 class="room-title">${name}</h3>
+          <p class="room-desc-short">${desc.substring(0, 60)}...</p>
           <div class="room-footer">
-            <div class="room-price">$${r.price}</div>
-            <button class="btn-outline">Batafsil</button>
+            <div class="room-price">${formatMoney(r.price)}</div>
+            <button class="btn-outline">${I18N[currentLang].btn_details}</button>
           </div>
         </div>
       </div>
     `;
-    select.innerHTML += `<option value="${key}">${r.name}</option>`;
+    select.innerHTML += `<option value="${key}">${name}</option>`;
   });
+  
+  if (savedVal) select.value = savedVal;
 }
 
 function selectTripType(type, btn) {
@@ -331,33 +450,19 @@ function selectPayment(type, btn) {
   document.getElementById('payment_type').value = type;
   document.querySelectorAll('#paymentTypeGroup .chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
-  
-  const avansBox = document.getElementById('avansBox');
-  if(type === 'avans') {
-    avansBox.style.display = 'block';
-  } else {
-    avansBox.style.display = 'none';
-  }
+  document.getElementById('avansBox').style.display = (type === 'avans') ? 'block' : 'none';
 }
 
 function updateCount(type, change) {
   if(tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
   const adultInp = document.getElementById('adult_count');
   const childInp = document.getElementById('child_count');
-  const roomKey = document.getElementById('fi_room').value;
-  const maxAllowed = ROOMS[roomKey] ? ROOMS[roomKey].max_guests : 2;
+  const maxAllowed = ROOMS[document.getElementById('fi_room').value]?.max_guests || 2;
 
-  let a = parseInt(adultInp.value);
-  let c = parseInt(childInp.value);
+  let a = parseInt(adultInp.value); let c = parseInt(childInp.value);
+  if (type === 'adult') { if (a + change >= 1) a += change; } else { if (c + change >= 0) c += change; }
 
-  if (type === 'adult') { if (a + change >= 1) a += change; } 
-  else { if (c + change >= 0) c += change; }
-
-  if (a + c > maxAllowed) {
-    tg.showAlert(`Kechirasiz, tanlangan xonaga ko'pi bilan ${maxAllowed} kishi sig'adi.`);
-    if(tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('warning');
-    return;
-  }
+  if (a + c > maxAllowed) return tg.showAlert(currentLang==='uz' ? `Sig'im cheklangan` : 'Capacity limit');
   adultInp.value = a; childInp.value = c;
 }
 
@@ -366,12 +471,14 @@ function openModal(key) {
   currentSelectedRoom = key;
   const r = ROOMS[key];
   document.getElementById('mImg').style.backgroundImage = `url('${r.img}')`;
-  document.getElementById('mTitle').innerText = r.name;
-  document.getElementById('mDesc').innerText = r.desc;
-  document.getElementById('mPrice').innerText = `$${r.price}`;
+  document.getElementById('mTitle').innerText = r.name[currentLang];
+  document.getElementById('mDesc').innerText = r.desc[currentLang];
+  document.getElementById('mPrice').innerText = formatMoney(r.price);
+  
   let amHtml = '';
-  r.amenities.forEach(a => { amHtml += `<div class="amenity-item"><span class="check-icon">✓</span> ${a}</div>`; });
+  r.amenities[currentLang].forEach(a => { amHtml += `<div class="amenity-item"><span class="check-icon">✓</span> ${a}</div>`; });
   document.getElementById('mAmenities').innerHTML = amHtml;
+  
   document.getElementById('modalBackdrop').classList.add('show');
   document.getElementById('roomModal').classList.add('show');
 }
@@ -395,18 +502,19 @@ function updatePricePreview() {
   
   if (!ci || !co || !rt) return;
 
-  const adultInp = document.getElementById('adult_count');
-  const childInp = document.getElementById('child_count');
   const max = ROOMS[rt].max_guests;
-  if (parseInt(adultInp.value) + parseInt(childInp.value) > max) {
-      adultInp.value = 1; childInp.value = 0;
+  if (parseInt(document.getElementById('adult_count').value) + parseInt(document.getElementById('child_count').value) > max) {
+      document.getElementById('adult_count').value = 1; document.getElementById('child_count').value = 0;
   }
 
   const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/(86400000)));
-  const total  = ROOMS[rt].price * nights;
+  const totalUSD = ROOMS[rt].price * nights;
   
-  document.getElementById('ppTotal').textContent = `$${total.toLocaleString()}`;
-  document.getElementById('avansAmount').textContent = `$${(total * 0.1).toLocaleString()}`;
+  // Backendga aniq formatted text yuboramiz
+  document.getElementById('hidden_total').value = formatMoney(totalUSD); 
+  
+  document.getElementById('ppTotal').textContent = formatMoney(totalUSD);
+  document.getElementById('avansAmount').textContent = formatMoney(totalUSD * 0.1);
 }
 
 async function submitBook(e) {
@@ -418,7 +526,7 @@ async function submitBook(e) {
   const data = Object.fromEntries(new FormData(form));
   data.tg_id = tg.initDataUnsafe?.user?.id || '';
   
-  btn.innerText = 'KUTING...'; btn.disabled = true;
+  btn.innerText = '...'; btn.disabled = true;
 
   try {
     const resp = await fetch(`${API_BASE}/api/bookings`, {
@@ -430,17 +538,13 @@ async function submitBook(e) {
 
     if (result.success) {
       tg.HapticFeedback.notificationOccurred('success');
-      tg.showAlert("✅ Bron muvaffaqiyatli qabul qilindi!");
+      tg.showAlert("✅ " + (currentLang==='uz'?"Bron qabul qilindi!":currentLang==='ru'?"Бронь принята!":"Booking confirmed!"));
       setTimeout(() => tg.close(), 2000); 
     } else {
-      tg.HapticFeedback.notificationOccurred('error');
-      tg.showAlert("❌ Xatolik: " + result.message);
-      btn.innerText = 'BRONNI TASDIQLASH'; btn.disabled = false;
+      tg.showAlert("❌ Error"); btn.disabled = false;
     }
   } catch(err) {
-     tg.HapticFeedback.notificationOccurred('error');
-     tg.showAlert("🌐 Server bilan aloqa yo'q. Qayta urinib ko'ring.");
-     btn.innerText = 'BRONNI TASDIQLASH'; btn.disabled = false;
+     tg.showAlert("🌐 Error: Server"); btn.disabled = false;
   }
 }
 </script>
