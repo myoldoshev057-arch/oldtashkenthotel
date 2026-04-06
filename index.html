@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Old Tashkent Hotel & Spa</title>
 
-  <!-- ✅ Telegram Mini App SDK — MUHIM! -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
@@ -44,12 +43,12 @@
     }
     .navbar-logo { font-size: 18px; font-weight: 700; color: var(--accent); }
     .navbar-controls { display: flex; gap: 8px; }
-    .lang-btn, .cur-btn {
+    .lang-btn {
       background: var(--card2); border: 1px solid var(--border);
       color: var(--text2); padding: 5px 10px; border-radius: 8px;
       font-size: 13px; cursor: pointer; transition: all .2s;
     }
-    .lang-btn.active, .cur-btn.active { border-color: var(--accent); color: var(--accent); }
+    .lang-btn.active { border-color: var(--accent); color: var(--accent); }
 
     /* ── Hero ── */
     .hero {
@@ -100,19 +99,16 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
     .form-group label { font-size: 13px; color: var(--text2); font-weight: 500; }
-    .form-group input, .form-group select, .form-group textarea {
+    .form-group input, .form-group textarea {
       background: var(--card2); border: 1px solid var(--border);
       color: var(--text); padding: 12px 14px; border-radius: 10px;
       font-size: 14px; outline: none; transition: border .2s;
       font-family: inherit;
     }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--accent);
-    }
-    .form-group select option { background: #1a1a1a; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
     .form-group textarea { resize: vertical; min-height: 80px; }
 
-    /* Guests counter */
+    /* Counter */
     .counter-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .counter-label { font-size: 14px; color: var(--text2); }
     .counter-controls { display: flex; align-items: center; gap: 12px; }
@@ -121,17 +117,15 @@
       background: var(--card2); border: 1px solid var(--border);
       color: var(--text); font-size: 18px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: all .2s;
     }
-    .counter-btn:hover { border-color: var(--accent); color: var(--accent); }
     .counter-val { font-size: 16px; font-weight: 600; min-width: 20px; text-align: center; }
 
-    /* Purpose chips */
+    /* Chips */
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip {
       background: var(--card2); border: 1px solid var(--border);
       padding: 7px 14px; border-radius: 20px; font-size: 13px;
-      cursor: pointer; transition: all .2s; color: var(--text2);
+      cursor: pointer; color: var(--text2);
     }
     .chip.active { border-color: var(--accent); color: var(--accent); background: #1a1508; }
 
@@ -141,7 +135,6 @@
       background: var(--card2); border: 1px solid var(--border);
       border-radius: 10px; padding: 12px; cursor: pointer;
       text-align: center; font-size: 13px; color: var(--text2);
-      transition: all .2s;
     }
     .payment-opt.active { border-color: var(--accent); color: var(--accent); background: #1a1508; }
 
@@ -152,7 +145,7 @@
       display: none;
     }
     .card-info.show { display: block; }
-    .card-number { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 2px; margin-top: 4px; }
+    .card-number { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 2px; }
     .card-copy {
       display: inline-block; margin-top: 6px;
       background: var(--accent); color: #000; border: none;
@@ -160,7 +153,7 @@
       cursor: pointer; font-weight: 600;
     }
 
-    /* Price summary */
+    /* Summary */
     .price-summary {
       background: linear-gradient(135deg, #1a1508, #0f0c03);
       border: 1px solid var(--accent); border-radius: var(--radius);
@@ -169,37 +162,25 @@
     .price-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; color: var(--text2); }
     .price-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: var(--accent); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 6px; }
 
-    /* Submit button */
+    /* Submit */
     .btn-submit {
       width: 100%; padding: 16px; border-radius: 12px;
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: #fff; font-size: 16px; font-weight: 700;
-      border: none; cursor: pointer; transition: all .25s;
-      letter-spacing: 0.5px;
+      color: #fff; font-size: 16px; font-weight: 700; border: none; cursor: pointer;
     }
-    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(139,105,20,0.4); }
-    .btn-submit:active { transform: translateY(0); }
-    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-submit:disabled { opacity: .5; }
 
     /* Toast */
     .toast {
       position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
       background: var(--success); color: #fff; padding: 14px 24px;
-      border-radius: 12px; font-size: 14px; font-weight: 600;
-      transition: transform .35s; z-index: 999; white-space: nowrap;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border-radius: 12px; font-size: 14px; transition: transform .35s; z-index: 999;
     }
-    .toast.error { background: var(--error); }
     .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { background: var(--error); }
 
-    /* Success screen */
-    .success-screen {
-      display: none; text-align: center; padding: 60px 20px;
-    }
+    .success-screen { display: none; text-align: center; padding: 60px 20px; }
     .success-screen.show { display: block; }
-    .success-icon { font-size: 64px; margin-bottom: 16px; }
-    .success-title { font-size: 24px; font-weight: 700; color: var(--success); margin-bottom: 10px; }
-    .success-text { color: var(--text2); line-height: 1.6; }
 
     @media (max-width: 500px) {
       .form-row { grid-template-columns: 1fr; }
@@ -209,7 +190,6 @@
 </head>
 <body>
 
-<!-- ── Navbar ── -->
 <nav class="navbar">
   <div class="navbar-logo">🏨 Old Tashkent</div>
   <div class="navbar-controls">
@@ -219,7 +199,6 @@
   </div>
 </nav>
 
-<!-- ── Hero ── -->
 <div class="hero">
   <h1>Old Tashkent Hotel & Spa</h1>
   <p id="hero-sub">Mehmondo'stlik va qulaylik uyg'unligi</p>
@@ -231,18 +210,14 @@
   </div>
 </div>
 
-<!-- ── Xona turlari ── -->
 <div class="section">
   <div class="section-title" id="t-rooms">🛏 Xona turini tanlang</div>
   <div class="rooms-grid" id="rooms-grid"></div>
 </div>
 
-<!-- ── Bron Forma ── -->
 <div class="section">
   <div class="section-title" id="t-booking">📅 Bron ma'lumotlari</div>
   <div class="booking-card">
-
-    <!-- Sana -->
     <div class="form-row">
       <div class="form-group">
         <label id="l-checkin">📅 Kelish sanasi (14:00 dan)</label>
@@ -254,7 +229,6 @@
       </div>
     </div>
 
-    <!-- Mehmonlar -->
     <div class="form-group">
       <label id="l-guests">👥 Mehmonlar soni</label>
       <div class="counter-row">
@@ -275,7 +249,6 @@
       </div>
     </div>
 
-    <!-- Maqsad -->
     <div class="form-group">
       <label id="l-purpose">🎯 Safar maqsadi</label>
       <div class="chips">
@@ -287,7 +260,6 @@
       </div>
     </div>
 
-    <!-- To'lov -->
     <div class="form-group">
       <label id="l-payment">💳 To'lov usuli</label>
       <div class="payment-options">
@@ -304,7 +276,6 @@
       </div>
     </div>
 
-    <!-- Shaxsiy ma'lumot -->
     <div class="form-row">
       <div class="form-group">
         <label id="l-name">👤 To'liq ismingiz</label>
@@ -318,10 +289,9 @@
 
     <div class="form-group">
       <label id="l-wishes">💬 Maxsus xohishlar (ixtiyoriy)</label>
-      <textarea id="wishes" placeholder="Baland qavat, tinch xona, erta kirish..."></textarea>
+      <textarea id="wishes" placeholder="..."></textarea>
     </div>
 
-    <!-- Narx xulosasi -->
     <div class="price-summary" id="price-summary" style="display:none">
       <div class="price-row"><span id="l-room-label">Xona:</span><span id="sum-room">—</span></div>
       <div class="price-row"><span id="l-nights-label">Kunlar:</span><span id="sum-nights">—</span></div>
@@ -334,44 +304,26 @@
   </div>
 </div>
 
-<!-- Success -->
 <div class="success-screen" id="success-screen">
-  <div class="success-icon">✅</div>
-  <div class="success-title" id="s-title">Bron qabul qilindi!</div>
-  <p class="success-text" id="s-text">
-    Xodimlarimiz tez orada telefon raqamingizga qo'ng'iroq qiladi va bronni tasdiqlaydi.<br><br>
-    ⏰ Ish vaqti: 09:00 – 22:00<br>
+  <div style="font-size: 64px;">✅</div>
+  <div class="success-title" id="s-title" style="font-size: 24px; font-weight: 700; color: var(--success); margin: 15px 0;">Bron qabul qilindi!</div>
+  <p class="success-text" id="s-text" style="color: var(--text2); line-height: 1.6;">
+    Xodimlarimiz tez orada telefon raqamingizga qo'ng'iroq qiladi.<br><br>
     📞 +998 (90) 971-62-08
   </p>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
 // ════════════════════════════════════════════════════════
-//  TELEGRAM MINI APP INIT
+//  KONFIGURATSIYA
 // ════════════════════════════════════════════════════════
+const WEBHOOK_URL = 'https://oldhotel.onrender.com/booking';
+
 const tg = window.Telegram?.WebApp;
-if (tg) {
-  tg.ready();
-  tg.expand();
-  // Telegram theme ranglarini qo'llash
-  if (tg.colorScheme === 'light') {
-    document.documentElement.style.setProperty('--bg', '#f5f5f5');
-    document.documentElement.style.setProperty('--card', '#ffffff');
-    document.documentElement.style.setProperty('--card2', '#f0f0f0');
-    document.documentElement.style.setProperty('--text', '#1a1a1a');
-    document.documentElement.style.setProperty('--text2', '#666');
-    document.documentElement.style.setProperty('--border', '#e0e0e0');
-  }
-}
+if (tg) { tg.ready(); tg.expand(); }
 
-const isMiniApp = !!tg?.initData;
-
-// ════════════════════════════════════════════════════════
-//  TILLAR
-// ════════════════════════════════════════════════════════
 const LANGS = {
   uz: {
     'hero-sub': "Mehmondo'stlik va qulaylik uyg'unligi",
@@ -394,7 +346,7 @@ const LANGS = {
     'btn-text': "✅ Bron so'rovini yuborish",
     'p-couple': "💑 Juftlik", 'p-family': "👨‍👩‍👧‍👦 Oilaviy",
     'p-friends': "🎉 Do'stlar", 'p-business': "💼 Biznes", 'p-solo': "👤 Yolg'iz",
-    's-title': "Bron qabul qilindi!", 's-text': "Xodimlarimiz tez orada telefon raqamingizga qo'ng'iroq qiladi va bronni tasdiqlaydi.<br><br>⏰ Ish vaqti: 09:00 – 22:00<br>📞 +998 (90) 971-62-08",
+    's-title': "Bron qabul qilindi!", 's-text': "Xodimlarimiz tez orada telefon raqamingizga qo'ng'iroq qiladi.<br><br>📞 +998 (90) 971-62-08",
   },
   ru: {
     'hero-sub': "Гостеприимство и комфорт в гармонии",
@@ -410,67 +362,117 @@ const LANGS = {
     'l-card-hint': "Карта для предоплаты:",
     'l-name': "👤 Полное имя",
     'l-phone': "📞 Номер телефона",
-    'l-wishes': "💬 Особые пожелания (необязательно)",
+    'l-wishes': "💬 Особые пожелания",
     'l-room-label': "Номер:", 'l-nights-label': "Ночей:", 'l-total': "Итого:",
-    'btn-text': "✅ Отправить запрос на бронь",
+    'btn-text': "✅ Отправить запрос",
     'p-couple': "💑 Пара", 'p-family': "👨‍👩‍👧‍👦 Семья",
     'p-friends': "🎉 Друзья", 'p-business': "💼 Бизнес", 'p-solo': "👤 Один",
-    's-title': "Бронь принята!", 's-text': "Наши сотрудники скоро позвонят вам для подтверждения.<br><br>⏰ Рабочее время: 09:00 – 22:00<br>📞 +998 (90) 971-62-08",
+    's-title': "Бронь принята!", 's-text': "Наши сотрудники скоро свяжутся с вами.<br><br>📞 +998 (90) 971-62-08",
   },
   en: {
-    'hero-sub': "Where hospitality meets comfort",
+    'hero-sub': "Hospitality meets comfort",
     't-rooms': "🛏 Select Room Type",
     't-booking': "📅 Booking Details",
-    'l-checkin': "📅 Check-in date (from 14:00)",
-    'l-checkout': "📅 Check-out date (until 12:00)",
-    'l-guests': "👥 Number of guests",
+    'l-checkin': "📅 Check-in (from 14:00)",
+    'l-checkout': "📅 Check-out (until 12:00)",
+    'l-guests': "👥 Guests",
     'l-adults': "Adults (12+)",
     'l-children': "Children (under 12)",
-    'l-purpose': "🎯 Travel purpose",
-    'l-payment': "💳 Payment method",
-    'l-card-hint': "Card for advance payment:",
+    'l-purpose': "🎯 Purpose",
+    'l-payment': "💳 Payment",
+    'l-card-hint': "Card for advance:",
     'l-name': "👤 Full Name",
     'l-phone': "📞 Phone number",
-    'l-wishes': "💬 Special requests (optional)",
+    'l-wishes': "💬 Requests",
     'l-room-label': "Room:", 'l-nights-label': "Nights:", 'l-total': "Total:",
-    'btn-text': "✅ Submit Booking Request",
+    'btn-text': "✅ Submit Request",
     'p-couple': "💑 Couple", 'p-family': "👨‍👩‍👧‍👦 Family",
     'p-friends': "🎉 Friends", 'p-business': "💼 Business", 'p-solo': "👤 Solo",
-    's-title': "Booking received!", 's-text': "Our staff will call you shortly to confirm your booking.<br><br>⏰ Working hours: 09:00 – 22:00<br>📞 +998 (90) 971-62-08",
+    's-title': "Booking received!", 's-text': "Our staff will call you shortly.<br><br>📞 +998 (90) 971-62-08",
   }
 };
 
+const ROOMS = [
+  { id:'standard', emoji:'🛏', price: 68, name: { uz:'Standard Xona', ru:'Стандартный', en:'Standard Room' }, features: { uz:['✅ Konditsioner','✅ Wi-Fi','✅ Dush'], ru:['✅ Кондиционер','✅ Wi-Fi','✅ Душ'], en:['✅ AC','✅ Wi-Fi','✅ Shower'] }},
+  { id:'deluxe', emoji:'🛎', price: 90, name: { uz:'Deluxe Xona', ru:'Делюкс', en:'Deluxe Room' }, features: { uz:['✅ King Bed','✅ Vanna','✅ Seif'], ru:['✅ Кровать King','✅ Ванна','✅ Сейф'], en:['✅ King Bed','✅ Bath','✅ Safe'] }},
+  { id:'triple', emoji:'👨‍👩‍👧', price: 110, name: { uz:'Triple Xona', ru:'Тройной', en:'Triple Room' }, features: { uz:['✅ 3 Karavot','✅ TV','✅ Muzlatgich'], ru:['✅ 3 Кровати','✅ ТВ','✅ Холодильник'], en:['✅ 3 Beds','✅ TV','✅ Fridge'] }}
+];
+
 let currentLang = 'uz';
+let selectedRoomId = null;
+let bookingData = { adults: 1, children: 0, purpose: 'couple', payment: 'onsite' };
+
 function setLang(lang) {
   currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach((b,i) => {
-    b.classList.toggle('active', ['uz','ru','en'][i] === lang);
-  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase().includes(lang)));
   const t = LANGS[lang];
-  Object.keys(t).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = t[id];
-  });
+  Object.keys(t).forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerHTML = t[id]; });
   renderRooms();
 }
 
-// ════════════════════════════════════════════════════════
-//  XONALAR
-// ════════════════════════════════════════════════════════
-const ROOMS = [
-  { id:'standard', emoji:'🛏', price: 68,
-    name: { uz:'Standard Xona', ru:'Стандартный Номер', en:'Standard Room' },
-    cap: { uz:'1-2 kishi', ru:'1-2 человека', en:'1-2 guests' },
-    features: { uz:['✅ Konditsioner','✅ Yasli TV','✅ Muzlatgich','✅ Wi-Fi','✅ Xavfsizlik seifi','✅ Dush + fen'],
-                ru:['✅ Кондиционер','✅ Телевизор','✅ Холодильник','✅ Wi-Fi','✅ Сейф','✅ Душ + фен'],
-                en:['✅ Air conditioning','✅ Flat TV','✅ Fridge','✅ Wi-Fi','✅ Safe','✅ Shower + hairdryer'] }},
-  { id:'deluxe', emoji:'🛎', price: 90,
-    name: { uz:'Deluxe Xona', ru:'Делюкс Номер', en:'Deluxe Room' },
-    cap: { uz:'1-3 kishi', ru:'1-3 человека', en:'1-3 guests' },
-    features: { uz:['✅ King/Twin karavot','✅ Vanna + dush','✅ Ovoz izolyatsiya','✅ Wi-Fi','✅ Kabel TV','✅ Seif'],
-                ru:['✅ Кровать King/Twin','✅ Ванна + душ','✅ Шумоизоляция','✅ Wi-Fi','✅ ТВ кабель','✅ Сейф'],
-                en:['✅ King/Twin bed','✅ Bath + shower','✅ Soundproofing','✅ Wi-Fi','✅ Cable TV','✅ Safe'] }},
-  { id:'triple', emoji:'👨‍👩‍👧', price: 110,
-    name: { uz:'Triple Xona', ru:'Тройной Номер', en:'Triple Room' },
-    cap: { uz:'3 kishi', ru:'3 человека', en:'3 guests' },
-    features: { uz:['✅ 3 ta karavot','✅ Konditsioner','✅ TV','✅ Muzlatgich','✅ Wi-Fi','✅ Hammom']
+function renderRooms() {
+  const grid = document.getElementById('rooms-grid');
+  grid.innerHTML = ROOMS.map(room => `
+    <div class="room-card ${selectedRoomId === room.id ? 'selected' : ''}" onclick="selectRoom('${room.id}')">
+      <div class="room-emoji">${room.emoji}</div>
+      <div class="room-name">${room.name[currentLang]}</div>
+      <div class="room-price">$${room.price} / kecha</div>
+      <ul class="room-features">${room.features[currentLang].map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+  updateSummary();
+}
+
+function selectRoom(id) { selectedRoomId = id; renderRooms(); }
+
+function change(type, delta) {
+  let val = bookingData[type] + delta;
+  if(type === 'adults' && val >= 1 && val <= 5) { bookingData.adults = val; document.getElementById('adults-val').innerText = val; }
+  if(type === 'children' && val >= 0 && val <= 5) { bookingData.children = val; document.getElementById('children-val').innerText = val; }
+}
+
+function setPurpose(el, val) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  bookingData.purpose = val;
+}
+
+function setPayment(el, val) {
+  document.querySelectorAll('.payment-opt').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  bookingData.payment = val;
+  document.getElementById('card-info').classList.toggle('show', val === 'advance');
+  updateSummary();
+}
+
+function updateSummary() {
+  const cin = document.getElementById('checkin').value;
+  const cout = document.getElementById('checkout').value;
+  const summaryEl = document.getElementById('price-summary');
+  if(!selectedRoomId || !cin || !cout) { summaryEl.style.display = 'none'; return; }
+  
+  const room = ROOMS.find(r => r.id === selectedRoomId);
+  const days = Math.ceil((new Date(cout) - new Date(cin)) / (86400000));
+  if(days > 0) {
+    summaryEl.style.display = 'block';
+    const total = room.price * days;
+    document.getElementById('sum-room').innerText = room.name[currentLang];
+    document.getElementById('sum-nights').innerText = days;
+    document.getElementById('sum-total').innerText = `$${total}`;
+    document.getElementById('advance-amount').innerText = `$${(total * 0.1).toFixed(1)}`;
+  } else { summaryEl.style.display = 'none'; }
+}
+
+function copyCard() {
+  navigator.clipboard.writeText("9860340101708832");
+  showToast("Nusxa olindi");
+}
+
+function showToast(msg, isErr = false) {
+  const t = document.getElementById('toast');
+  t.innerText = msg; t.className = isErr ? 'toast show error' : 'toast show';
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+async function submitBooking() {
+  const name = document.getElementByI
